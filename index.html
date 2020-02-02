@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>WMS GetFeatureInfo</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+    <![endif]-->
+    
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <style type="text/css">
+      html, body, #map {
+        margin: 0px;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="L.TileLayer.BetterWMS.js"></script>
+    <script>
+      var map = L.map('map', {
+        center: [7.996558, 98.339742],
+        zoom: 11
+        // setView([7.996558, 98.339742], 11)
+      });
+      
+      var url = 'http://gs.nwcc.go.th/geoserver/geo/wms';
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+      
+      L.tileLayer.betterWms(url, {
+        layers: 'geo:Sub_District_WGS84',
+        transparent: true,
+        format: 'image/png'
+      }).addTo(map);
+
+
+    </script>
+  </body>
+</html>
